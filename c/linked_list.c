@@ -1,3 +1,10 @@
+//
+//  linked_list.c
+//
+//
+//  Created by 이한승 on 05/10/2019.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
 
