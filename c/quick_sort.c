@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 void quickSort(int *l, int first, int last);
-void swap(int *a, int *b);
 int partition(int *list, int left, int right);
 void printList(int *list);
 
+#define SWAP(x, y, temp) ((temp)=(x), (x)=(y), (y)=(temp))
 #define MAX 22
 
 int main()
@@ -24,9 +24,11 @@ int main()
 
 int partition(int *list, int first, int last) {
     printList(list);
-    int pivot = list[first];
-    int start = first;
-    int end = last + 1;
+    int pivot, temp, start, end;
+    
+    pivot = list[first];
+    start = first;
+    end = last + 1;
     
     while(start < end) {
         do {
@@ -39,11 +41,11 @@ int partition(int *list, int first, int last) {
         printf(">> start %d, end %d, pivot %d\n", start, end, pivot);
         
         if (start < end) {
-            swap(&list[start], &list[end]);
+            SWAP(list[start], list[end], temp);
         }
     }
     
-    swap(&list[first], &list[end]);
+    SWAP(list[first], list[end], temp);
     
     printList(list);
     
@@ -66,12 +68,4 @@ void printList(int *list) {
         printf("%d ", list[j]);
     }
     printf("\n");
-}
-
-void swap(int *a, int *b) {
-    int tmp;
-    
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
 }
